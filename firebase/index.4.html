@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+    <h1 id="title"></h1>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA5HhprdF13fPVxsEeC7-7KerFFk1v9ZEw",
+            authDomain: "nodejs-firebase-1c53b.firebaseapp.com",
+            databaseURL: "https://nodejs-firebase-1c53b.firebaseio.com",
+            projectId: "nodejs-firebase-1c53b",
+            storageBucket: "nodejs-firebase-1c53b.appspot.com",
+            messagingSenderId: "693988286495"
+        };
+        firebase.initializeApp(config);
+        var nameRef = firebase.database().ref('myName');
+        nameRef.set('mark');
+        nameRef.on('value', function(snapshot){
+            document.getElementById('title').textContent = snapshot.val();
+        })
+    </script>
+</body>
+</html>

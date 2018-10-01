@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+</head>
+<body>
+    <input id="txt" type="text" placeholder="請輸入內容...">
+    <input type="button" id="send" value="送出">
+    <ul id="list"></ul>
+    <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA5HhprdF13fPVxsEeC7-7KerFFk1v9ZEw",
+            authDomain: "nodejs-firebase-1c53b.firebaseapp.com",
+            databaseURL: "https://nodejs-firebase-1c53b.firebaseio.com",
+            projectId: "nodejs-firebase-1c53b",
+            storageBucket: "nodejs-firebase-1c53b.appspot.com",
+            messagingSenderId: "693988286495"
+        };
+        firebase.initializeApp(config);
+
+        // dom
+        var txt = document.getElementById('txt');
+        var send = document.getElementById('send');
+        var list = document.getElementById('list');
+
+        // todos
+        var todos = firebase.database().ref('todos');
+
+        // 按送出按鈕，可以寫入到資料庫
+        send.addEventListener('click', function(e) {
+            console.log(txt.value);
+            todos.push({content: txt.value});
+        });
+        // 顯示內容出來
+        todos.on('value', function(snapshot) {
+            //consoole.log(snapshot.val());
+            var str = '';
+            var data = snapshot.val();
+            for (var item in data) {
+                //console.log(item);
+                str+='<li data-key="'+item+'">'+data[item].content+'</li>';
+            }
+            //console.log(str);
+        list.innerHTML = str;
+        });
+        // 刪除邏輯
+        list.addEventListener('click', function(e){
+            if(e.target.nodeName=="LI") {
+                var key = e.target.dataset.key;
+                todos.child(key).remove();
+            }
+        });
+    </script>
+</body>
+</html>

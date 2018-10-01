@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+
+<script src="https://www.gstatic.com/firebasejs/5.5.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyA5HhprdF13fPVxsEeC7-7KerFFk1v9ZEw",
+        authDomain: "nodejs-firebase-1c53b.firebaseapp.com",
+        databaseURL: "https://nodejs-firebase-1c53b.firebaseio.com",
+        projectId: "nodejs-firebase-1c53b",
+        storageBucket: "nodejs-firebase-1c53b.appspot.com",
+        messagingSenderId: "693988286495"
+    };
+    firebase.initializeApp(config);
+    //var database = firebase.database();
+    //console.log(database);
+    //firebase.database().ref().set('hi');
+
+    // firebase 全部都是"物件格式", 不能是陣列內容
+    //firebase.database().ref().set([0,1,2]);
+
+    //一個班級有兩個學生
+    var data = null;
+    data = {
+        student1: {
+            name: 'tom',
+            num: '1'
+        },
+        student2: {
+            name: 'john',
+            num: '2'
+        }
+    }
+</script>
+</head>
+<body>
+    <h1>hello</h1>
+</body>
+</html>
